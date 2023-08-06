@@ -1,33 +1,36 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { Button, Form, Input } from './ContactForm.styled';
+import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import {Button, Form, Input} from './ContactForm.styled'
 import Notiflix from 'notiflix';
 
 export class ContactForm extends Component {
+
   state = {
     name: '',
     number: '',
-  };
 
-  handleChange = ({ target }) => {
+  }
+
+    handleChange = ({ target }) => {
     this.setState({
-      [target.name]: target.value,
-    });
-  };
+      [target.name]: target.value
+    })
 
-  onSubmit = e => {
+  }
+
+  onSubmit = (e) => {
     e.preventDefault();
 
     if (!this.state.name.trim() && !this.state.number.trim()) {
-      Notiflix.Notify.failure('Empty input!');
-      return;
+      Notiflix.Notify.failure('Empty input!')
+      return
     }
 
     this.props.onSubmit(this.state);
-  };
+  }
 
   render() {
-    return (
+  return (
       <Form onSubmit={this.onSubmit}>
         <div>
           <label htmlFor="name">Name</label>
@@ -53,10 +56,11 @@ export class ContactForm extends Component {
             value={this.state.number}
           />
           <Button type="submit">Add contact</Button>
-        </div>
-      </Form>
-    );
+          </div>
+          </Form>
+           );
   }
+  
 }
 
 export default ContactForm;
@@ -64,3 +68,4 @@ export default ContactForm;
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+ 
